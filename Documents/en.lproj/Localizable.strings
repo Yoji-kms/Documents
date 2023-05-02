@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Documents
+
+  Created by Yoji on 01.05.2023.
+  
+*/
+
+"Documents" = "Documents";
+"Cancel" = "Cancel";
+"Create" = "Create";
+"Create new folder" = "Create new folder";
+"Folder name" = "Folder name";

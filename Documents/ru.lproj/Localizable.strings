@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Documents
+
+  Created by Yoji on 01.05.2023.
+  
+*/
+
+"Documents" = "Документы";
+"Cancel" = "Отмена";
+"Create" = "Создать";
+"Create new folder" = "Создать новую папку";
+"Folder name" = "Имя папки";
