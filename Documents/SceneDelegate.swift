@@ -17,18 +17,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         self.window = UIWindow(windowScene: windowScene)
+    
+        let fileManagerService = FileManagerService()
+        let factory = AppFactory(fileManagerService: fileManagerService)
+        let appCoordinator = LoginCoordinator(moduleType: .login(), factory: factory)
         
-        do {
-            let fileManagerService = FileManagerService()
-            let factory = AppFactory(fileManagerService: fileManagerService)
-            let rootUrl = try fileManagerService.getRootUrl()
-            let appCoordinator = AppCoordinator(moduleType: .folder(rootUrl, fileManagerService), factory: factory)
-            
-            self.window?.rootViewController = appCoordinator.start()
-            self.window?.makeKeyAndVisible()
-        } catch {
-            print("🔴\(error)")
-        }
+        self.window?.rootViewController = appCoordinator.start()
+        self.window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

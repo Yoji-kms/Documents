@@ -9,24 +9,33 @@ import UIKit
 
 final class FolderViewModel: FolderViewModelProtocol {
     let folderUrl: URL
+    let userDefaults: UserDefaults
     var contents: [Content]
+    private var isSortAlphabetic: Bool
     private let fileManagerService: FileManagerServiceProtocol
     
-    var coordinator: AppCoordinator?
+    weak var coordinator: FolderCoordinator?
     
     enum ViewInput {
         case folderDidTap(String)
-        case createFolderBtnDidTap(() -> Void)
+        case createFolderBtnDidTap((String) -> Void)
         case addImageBtnDidTap
         case didReturnFromInfoViewController(Coordinatable)
         case didFinishPickingImage(String, Data)
         case removeItem(Int)
+        case updateSort(completion: (Bool) -> Void = {_ in })
     }
     
-    init(fileManagerService: FileManagerServiceProtocol, folderUrl: URL) {
-        self.folderUrl = folderUrl
+    init(fileManagerService: FileManagerServiceProtocol, folderUrl: URL?) {
+        let unwrappedUrl = folderUrl.unwrap()
+        self.folderUrl = unwrappedUrl
         self.fileManagerService = fileManagerService
-        self.contents = self.fileManagerService.contentsOfDirectory(folderUrl)
+        self.userDefaults = UserDefaults.standard
+        self.isSortAlphabetic = !self.userDefaults.bool(forKey: Keys.isNotAlphabeticSort.rawValue)
+        self.contents = self
+            .fileManagerService
+            .contentsOfDirectory(unwrappedUrl)
+            .sortAlphabetic(self.isSortAlphabetic)
     }
     
     func updateState(viewInput: ViewInput) {
@@ -35,14 +44,13 @@ final class FolderViewModel: FolderViewModelProtocol {
             let subfolderUrl = self.folderUrl.appending(path: subfolderTitle)
             self.coordinator?.pushSubfolderViewController(
                 folderUrl: subfolderUrl,
-                fileManagerService: self.fileManagerService,
-                prevTitle: folderUrl.lastPathComponent
+                fileManagerService: self.fileManagerService
             )
         case .createFolderBtnDidTap(let completion):
             self.coordinator?.presentCreateFolderAlertController() { subfolderName in
                 self.fileManagerService.createDitectory(folderUrl: self.folderUrl, subfolderName: subfolderName)
                 self.contents.append(Content(contentType: .folder, name: subfolderName))
-                completion()
+                completion(subfolderName)
             }
         case .addImageBtnDidTap:
             self.coordinator?.presentCreateImageController()
@@ -56,6 +64,11 @@ final class FolderViewModel: FolderViewModelProtocol {
             let itemUrl = folderUrl.appending(path: itemName)
             self.contents.remove(at: id)
             self.fileManagerService.removeContent(itemUrl)
+        case .updateSort(let completion):
+            let sortChanged = self.isSortAlphabetic != !self.userDefaults.bool(forKey: Keys.isNotAlphabeticSort.rawValue)
+            self.isSortAlphabetic = !self.userDefaults.bool(forKey: Keys.isNotAlphabeticSort.rawValue)
+            self.contents = self.contents.sortAlphabetic(self.isSortAlphabetic)
+            completion(sortChanged)
         }
     }
 }

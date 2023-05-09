@@ -8,7 +8,7 @@
 import UIKit
 import PhotosUI
 
-class FolderViewController: UIViewController {
+final class FolderViewController: UIViewController {
     private let viewModel: FolderViewModelProtocol
     weak var coordDelegate: RemoveChildCoordinatorDelegate?
 
@@ -30,6 +30,12 @@ class FolderViewController: UIViewController {
             target: self,
             action: #selector(addImageBtnDidTap)
         )
+        return btn
+    }()
+    
+    private lazy var backBarBtn: UIBarButtonItem = {
+        let btn = UIBarButtonItem()
+        btn.title = self.viewModel.folderUrl.lastPathComponent
         return btn
     }()
     
@@ -56,12 +62,21 @@ class FolderViewController: UIViewController {
     }
     
 //    MARK: Lifcycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setupNavigation()
+        self.viewModel.updateState(viewInput: .updateSort(){ sortChanged in
+            if sortChanged {
+                self.docsTabelView.reloadSections(IndexSet(integer: 0), with: .automatic)
+            }
+        })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
         self.setupViews()
-        self.setupNavigation()
     }
     
 //    MARK: Setups
@@ -78,25 +93,23 @@ class FolderViewController: UIViewController {
     
     private func setupNavigation() {
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationItem.title = self.viewModel.folderUrl.lastPathComponent
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.hidesBackButton = false
-        self.navigationItem.rightBarButtonItems = [
+        guard let parent = self.parent else { return }
+        let viewController = parent as? UITabBarController == nil ? self : parent
+        viewController.navigationItem.title = self.viewModel.folderUrl.lastPathComponent
+        viewController.navigationItem.backBarButtonItem = self.backBarBtn
+        viewController.navigationController?.navigationBar.prefersLargeTitles = true
+        viewController.navigationItem.hidesBackButton = parent as? UITabBarController != nil
+        viewController.navigationItem.rightBarButtonItems = [
             self.addFolderBtn,
             self.addImageBtn
         ]
-        let backBarItem = UIBarButtonItem()
-        backBarItem.title = self.viewModel.folderUrl.lastPathComponent
-        self.navigationItem.backBarButtonItem = backBarItem
     }
     
 //    MARK: Actions
     @objc private func addFolderBtnDidTap() {
-        self.viewModel.updateState(viewInput: .createFolderBtnDidTap {
-            self.docsTabelView.performBatchUpdates {
-                let index = IndexPath(row: self.viewModel.contents.count - 1, section: 0)
-                self.docsTabelView.insertRows(at: [index], with: .automatic)
-            }
+        self.viewModel.updateState(viewInput: .createFolderBtnDidTap { folderName in
+            self.viewModel.updateState(viewInput: .updateSort())
+            self.insertRowToTable(rowContentName: folderName)
         })
     }
     
@@ -104,9 +117,13 @@ class FolderViewController: UIViewController {
         self.viewModel.updateState(viewInput: .addImageBtnDidTap)
     }
     
-    private func insertRowToTable() {
+    private func insertRowToTable(rowContentName: String) {
         self.docsTabelView.performBatchUpdates {
-            let index = IndexPath(row: self.viewModel.contents.count - 1, section: 0)
+            let row = self.viewModel.contents.firstIndex(where: { content in
+                content.name == rowContentName
+            })?.codingKey.intValue
+            let unwrappedRow = row ?? (self.viewModel.contents.count - 1)
+            let index = IndexPath(row: unwrappedRow, section: 0)
             self.docsTabelView.insertRows(at: [index], with: .automatic)
         }
     }
@@ -160,32 +177,23 @@ extension FolderViewController: RemoveChildCoordinatorDelegate {
     }
 }
 
-extension FolderViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let imageUrl = info[.imageURL] as? URL else { return }
-        guard let image = info[.originalImage] as? UIImage else { return }
-        let imageName = imageUrl.lastPathComponent
-        if let jpegData = image.jpegData(compressionQuality: 0.8) {
-            self.viewModel.updateState(viewInput: .didFinishPickingImage(imageName, jpegData))
-        }
-        self.insertRowToTable()
-    }
-}
-
 extension FolderViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         guard let result = results.first else { return }
-        result.itemProvider.loadFileRepresentation(for: .jpeg) { url,_,_ in
+        let progress = result.itemProvider.loadFileRepresentation(for: .jpeg) { url,_,_ in
             guard let imageName = url?.lastPathComponent else { return }
             result.itemProvider.loadObject(ofClass: UIImage.self) { reading, error in
                 guard let image = reading as? UIImage, error == nil else { return }
                 DispatchQueue.main.async {
                     guard let imageData = image.jpegData(compressionQuality: 0.8) else { return }
                     self.viewModel.updateState(viewInput: .didFinishPickingImage(imageName, imageData))
-                    self.insertRowToTable()
+                    self.viewModel.updateState(viewInput: .updateSort())
+                    self.insertRowToTable(rowContentName: imageName)
+                    self.viewModel.updateState(viewInput: .updateSort())
                 }
             }
         }
+        print("🔵\(progress)")
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 import PhotosUI
 
-final class AppCoordinator: ModuleCoordinatable {
+final class FolderCoordinator: ModuleCoordinatable {
     let moduleType: Module.ModuleType
     
     private let factory: AppFactory
@@ -33,11 +33,9 @@ final class AppCoordinator: ModuleCoordinatable {
         self.removeChildCoordinator(coordinator)
     }
     
-    func pushSubfolderViewController(folderUrl: URL, fileManagerService: FileManagerServiceProtocol, prevTitle: String?) {
-        let subfolderCoordinator = AppCoordinator(
-            moduleType: .folder(folderUrl,
-                                fileManagerService,
-                                prevTitle: prevTitle),
+    func pushSubfolderViewController(folderUrl: URL, fileManagerService: FileManagerServiceProtocol) {
+        let subfolderCoordinator = FolderCoordinator(
+            moduleType: .folder(url: folderUrl),
             factory: self.factory
         )
         
@@ -47,10 +45,6 @@ final class AppCoordinator: ModuleCoordinatable {
         
         let delegate = self.module?.viewController as? RemoveChildCoordinatorDelegate
         viewControllerToPush.coordDelegate = delegate
-
-        if let navController = self.module?.viewController as? UINavigationController {
-            navController.pushViewController(viewControllerToPush, animated: true)
-        }
         
         self.module?.viewController.navigationController?.pushViewController(viewControllerToPush, animated: true)
         self.addChildCoordinator(subfolderCoordinator)
@@ -88,17 +82,12 @@ final class AppCoordinator: ModuleCoordinatable {
     }
     
     func presentCreateImageController() {
-//        let imagePicker = UIImagePickerController()
         var phPickerConfig = PHPickerConfiguration(photoLibrary: .shared())
         phPickerConfig.selectionLimit = 1
         let phPicker = PHPickerViewController(configuration: phPickerConfig)
-        let navController = self.module?.viewController as? UINavigationController
-        let viewController = navController != nil ? navController?.topViewController : self.module?.viewController
-        guard let folderVC = viewController as? FolderViewController else { return }
-        phPicker.delegate = folderVC
-        folderVC.present(phPicker, animated: true)
-//        imagePicker.delegate = folderVC
-//        imagePicker.sourceType = .photoLibrary
+        guard let viewController = self.module?.viewController as? FolderViewController else { return }
+        phPicker.delegate = viewController
+        viewController.present(phPicker, animated: true)
     }
     
     func addChildCoordinator(_ coordinator: Coordinatable) {
