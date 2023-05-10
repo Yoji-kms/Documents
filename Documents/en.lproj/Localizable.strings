@@ -7,7 +7,21 @@
 */
 
 "Documents" = "Documents";
+"Settings" = "Settings";
 "Cancel" = "Cancel";
 "Create" = "Create";
 "Create new folder" = "Create new folder";
 "Folder name" = "Folder name";
+
+"Repeat the password" = "Repeat the password";
+"Enter the password" = "Enter the password";
+
+"Create a password" = "Create a password";
+
+"Change password" = "Change password";
+
+"Password is weak" = "Weak password!\nPassword must have at least 4 symbols";
+"Passwords not the same" = "Entered passwords doesn't match\Try again";
+"Wrong password" = "Wrong password";
+
+"Sort documents" = "Sort documents in alphabetic order";

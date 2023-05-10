@@ -7,15 +7,11 @@
 
 import Foundation
 
-enum FileManagerError: Error {
-    case directoryNotFound
-}
-
 final class FileManagerService: FileManagerServiceProtocol {
     func contentsOfDirectory(_ url: URL? = nil) -> [Content] {
         do {
             var contents: [Content] = []
-            let unwrappedUrl = try url.unwrap()
+            let unwrappedUrl = url.unwrap()
             
             let fileUrls = try FileManager.default.contentsOfDirectory(at: unwrappedUrl, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])
             fileUrls.forEach { fileUrl in
@@ -33,21 +29,16 @@ final class FileManagerService: FileManagerServiceProtocol {
     
     func createDitectory(folderUrl: URL?, subfolderName: String) {
         do {
-            let unwrappedUrl = try folderUrl.unwrap().appending(path: subfolderName)
+            let unwrappedUrl = folderUrl.unwrap().appending(path: subfolderName)
             try FileManager.default.createDirectory(at: unwrappedUrl, withIntermediateDirectories: true)
-            
         } catch {
             print("🔴\(error)")
         }
     }
     
     func createFile(folderUrl: URL?, fileName: String, fileData: Data) {
-        do {
-            let unwrappedUrl = try folderUrl.unwrap().appending(path: fileName)
-            FileManager.default.createFile(atPath: unwrappedUrl.path(), contents: fileData)
-        } catch {
-            print("🔴\(error)")
-        }
+        let unwrappedUrl = folderUrl.unwrap().appending(path: fileName)
+        FileManager.default.createFile(atPath: unwrappedUrl.path(), contents: fileData)
     }
     
     func removeContent(_ url: URL) {
@@ -60,26 +51,23 @@ final class FileManagerService: FileManagerServiceProtocol {
     
     func getRootUrl() throws -> URL {
         let url: URL? = nil
-        return try url.unwrap()
+        return url.unwrap()
     }
 }
 
 extension URL? {
-    func unwrap() throws -> URL {
-        var directoryUrl = self
-        if self == nil {
-            directoryUrl = try FileManager.default.url(
+    func unwrap() -> URL {
+        guard let unwrappedUrl = self else {
+            guard let rootUrl = try? FileManager.default.url(
                 for: .documentDirectory,
                 in: .userDomainMask,
                 appropriateFor: nil,
                 create: false
-                )
+            ) else {
+                preconditionFailure("🔴 URL doesn't exist")
+            }
+            return rootUrl
         }
-        
-        guard let unwrappedUrl = directoryUrl else {
-            throw FileManagerError.directoryNotFound
-        }
-        
         return unwrappedUrl
     }
 }

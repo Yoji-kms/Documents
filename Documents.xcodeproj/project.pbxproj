@@ -20,12 +20,31 @@
 		F923A25D29FFAA9A004E453E /* FolderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F923A25C29FFAA9A004E453E /* FolderViewModel.swift */; };
 		F923A25F29FFACB9004E453E /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F923A25E29FFACB9004E453E /* Coordinatable.swift */; };
 		F923A26129FFACE2004E453E /* ModuleCoordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F923A26029FFACE2004E453E /* ModuleCoordinatable.swift */; };
-		F923A26329FFAD0D004E453E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F923A26229FFAD0D004E453E /* AppCoordinator.swift */; };
+		F923A26329FFAD0D004E453E /* FolderCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F923A26229FFAD0D004E453E /* FolderCoordinator.swift */; };
 		F923A26629FFAD93004E453E /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F923A26529FFAD93004E453E /* AppFactory.swift */; };
 		F923A26929FFB701004E453E /* RemoveChildCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F923A26829FFB701004E453E /* RemoveChildCoordinatorDelegate.swift */; };
 		F923A26F29FFC818004E453E /* UrlUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F923A26E29FFC818004E453E /* UrlUtils.swift */; };
 		F923A27229FFF039004E453E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F923A27429FFF039004E453E /* Localizable.strings */; };
 		F923A2782A011084004E453E /* TextFieldUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F923A2772A011084004E453E /* TextFieldUtils.swift */; };
+		F9C2A5282A0306AF00CADACF /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = F9C2A5272A0306AF00CADACF /* KeychainAccess */; };
+		F9C2A52A2A03075700CADACF /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A5292A03075700CADACF /* TabCoordinator.swift */; };
+		F9C2A52C2A03078300CADACF /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A52B2A03078300CADACF /* LoginCoordinator.swift */; };
+		F9C2A5302A0307CA00CADACF /* LoginViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A52F2A0307CA00CADACF /* LoginViewModelProtocol.swift */; };
+		F9C2A5322A0307D200CADACF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A5312A0307D200CADACF /* LoginViewModel.swift */; };
+		F9C2A5342A0307E600CADACF /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A5332A0307E600CADACF /* SettingsViewModel.swift */; };
+		F9C2A5362A0307F400CADACF /* SettingsViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A5352A0307F400CADACF /* SettingsViewModelProtocol.swift */; };
+		F9C2A5382A038D4C00CADACF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A5372A038D4C00CADACF /* TabBarController.swift */; };
+		F9C2A53A2A038DBD00CADACF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A5392A038DBD00CADACF /* LoginViewController.swift */; };
+		F9C2A53C2A038DD200CADACF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A53B2A038DD200CADACF /* SettingsViewController.swift */; };
+		F9C2A53E2A038E9800CADACF /* FolderTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A53D2A038E9800CADACF /* FolderTabCoordinator.swift */; };
+		F9C2A5402A038EB600CADACF /* SettingsTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A53F2A038EB600CADACF /* SettingsTabCoordinator.swift */; };
+		F9C2A5422A03ADA500CADACF /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A5412A03ADA500CADACF /* SettingsCoordinator.swift */; };
+		F9C2A5472A08F43D00CADACF /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A5462A08F43D00CADACF /* Keys.swift */; };
+		F9C2A5492A08F71E00CADACF /* AlertUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A5482A08F71E00CADACF /* AlertUtils.swift */; };
+		F9C2A54B2A0A447A00CADACF /* ButtonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A54A2A0A447A00CADACF /* ButtonUtils.swift */; };
+		F9C2A54D2A0A960800CADACF /* ContentArrayUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A54C2A0A960800CADACF /* ContentArrayUtils.swift */; };
+		F9C2A54F2A0AA79C00CADACF /* UpdateSortDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A54E2A0AA79C00CADACF /* UpdateSortDelegate.swift */; };
+		F9C2A5512A0AA9AA00CADACF /* UserDefaultsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C2A5502A0AA9AA00CADACF /* UserDefaultsUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,13 +63,31 @@
 		F923A25C29FFAA9A004E453E /* FolderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewModel.swift; sourceTree = "<group>"; };
 		F923A25E29FFACB9004E453E /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
 		F923A26029FFACE2004E453E /* ModuleCoordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleCoordinatable.swift; sourceTree = "<group>"; };
-		F923A26229FFAD0D004E453E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		F923A26229FFAD0D004E453E /* FolderCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCoordinator.swift; sourceTree = "<group>"; };
 		F923A26529FFAD93004E453E /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
 		F923A26829FFB701004E453E /* RemoveChildCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveChildCoordinatorDelegate.swift; sourceTree = "<group>"; };
 		F923A26E29FFC818004E453E /* UrlUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlUtils.swift; sourceTree = "<group>"; };
 		F923A27329FFF039004E453E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F923A27629FFF1BF004E453E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F923A2772A011084004E453E /* TextFieldUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldUtils.swift; sourceTree = "<group>"; };
+		F9C2A5292A03075700CADACF /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
+		F9C2A52B2A03078300CADACF /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		F9C2A52F2A0307CA00CADACF /* LoginViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelProtocol.swift; sourceTree = "<group>"; };
+		F9C2A5312A0307D200CADACF /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		F9C2A5332A0307E600CADACF /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		F9C2A5352A0307F400CADACF /* SettingsViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModelProtocol.swift; sourceTree = "<group>"; };
+		F9C2A5372A038D4C00CADACF /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		F9C2A5392A038DBD00CADACF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F9C2A53B2A038DD200CADACF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		F9C2A53D2A038E9800CADACF /* FolderTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderTabCoordinator.swift; sourceTree = "<group>"; };
+		F9C2A53F2A038EB600CADACF /* SettingsTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabCoordinator.swift; sourceTree = "<group>"; };
+		F9C2A5412A03ADA500CADACF /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		F9C2A5462A08F43D00CADACF /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		F9C2A5482A08F71E00CADACF /* AlertUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtils.swift; sourceTree = "<group>"; };
+		F9C2A54A2A0A447A00CADACF /* ButtonUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonUtils.swift; sourceTree = "<group>"; };
+		F9C2A54C2A0A960800CADACF /* ContentArrayUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentArrayUtils.swift; sourceTree = "<group>"; };
+		F9C2A54E2A0AA79C00CADACF /* UpdateSortDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSortDelegate.swift; sourceTree = "<group>"; };
+		F9C2A5502A0AA9AA00CADACF /* UserDefaultsUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9C2A5282A0306AF00CADACF /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +121,7 @@
 		F923A23429FF9372004E453E /* Documents */ = {
 			isa = PBXGroup;
 			children = (
+				F9C2A5452A08F42400CADACF /* Keys */,
 				F923A26D29FFC804004E453E /* Utils */,
 				F923A26729FFB6EE004E453E /* Delegates */,
 				F923A26429FFAD82004E453E /* Factories */,
@@ -103,6 +142,8 @@
 		F923A24929FFA692004E453E /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F9C2A52E2A0307AD00CADACF /* Settings */,
+				F9C2A52D2A0307A200CADACF /* Login */,
 				F923A25929FFAA5E004E453E /* Folder */,
 				F923A25529FFA9DB004E453E /* Module.swift */,
 				F923A25729FFAA45004E453E /* ViewModelProtocol.swift */,
@@ -114,6 +155,9 @@
 			isa = PBXGroup;
 			children = (
 				F923A23929FF9372004E453E /* FolderViewController.swift */,
+				F9C2A5372A038D4C00CADACF /* TabBarController.swift */,
+				F9C2A5392A038DBD00CADACF /* LoginViewController.swift */,
+				F9C2A53B2A038DD200CADACF /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -123,7 +167,12 @@
 			children = (
 				F923A25E29FFACB9004E453E /* Coordinatable.swift */,
 				F923A26029FFACE2004E453E /* ModuleCoordinatable.swift */,
-				F923A26229FFAD0D004E453E /* AppCoordinator.swift */,
+				F923A26229FFAD0D004E453E /* FolderCoordinator.swift */,
+				F9C2A5292A03075700CADACF /* TabCoordinator.swift */,
+				F9C2A52B2A03078300CADACF /* LoginCoordinator.swift */,
+				F9C2A53D2A038E9800CADACF /* FolderTabCoordinator.swift */,
+				F9C2A53F2A038EB600CADACF /* SettingsTabCoordinator.swift */,
+				F9C2A5412A03ADA500CADACF /* SettingsCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -174,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				F923A26829FFB701004E453E /* RemoveChildCoordinatorDelegate.swift */,
+				F9C2A54E2A0AA79C00CADACF /* UpdateSortDelegate.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -183,8 +233,38 @@
 			children = (
 				F923A26E29FFC818004E453E /* UrlUtils.swift */,
 				F923A2772A011084004E453E /* TextFieldUtils.swift */,
+				F9C2A5482A08F71E00CADACF /* AlertUtils.swift */,
+				F9C2A54A2A0A447A00CADACF /* ButtonUtils.swift */,
+				F9C2A54C2A0A960800CADACF /* ContentArrayUtils.swift */,
+				F9C2A5502A0AA9AA00CADACF /* UserDefaultsUtils.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		F9C2A52D2A0307A200CADACF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F9C2A52F2A0307CA00CADACF /* LoginViewModelProtocol.swift */,
+				F9C2A5312A0307D200CADACF /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F9C2A52E2A0307AD00CADACF /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F9C2A5352A0307F400CADACF /* SettingsViewModelProtocol.swift */,
+				F9C2A5332A0307E600CADACF /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		F9C2A5452A08F42400CADACF /* Keys */ = {
+			isa = PBXGroup;
+			children = (
+				F9C2A5462A08F43D00CADACF /* Keys.swift */,
+			);
+			path = Keys;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +283,9 @@
 			dependencies = (
 			);
 			name = Documents;
+			packageProductDependencies = (
+				F9C2A5272A0306AF00CADACF /* KeychainAccess */,
+			);
 			productName = Documents;
 			productReference = F923A23229FF9372004E453E /* Documents.app */;
 			productType = "com.apple.product-type.application";
@@ -232,6 +315,9 @@
 				ru,
 			);
 			mainGroup = F923A22929FF9372004E453E;
+			packageReferences = (
+				F9C2A5262A0306AF00CADACF /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
 			productRefGroup = F923A23329FF9372004E453E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -258,23 +344,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9C2A5322A0307D200CADACF /* LoginViewModel.swift in Sources */,
 				F923A25829FFAA45004E453E /* ViewModelProtocol.swift in Sources */,
 				F923A23A29FF9372004E453E /* FolderViewController.swift in Sources */,
-				F923A26329FFAD0D004E453E /* AppCoordinator.swift in Sources */,
+				F923A26329FFAD0D004E453E /* FolderCoordinator.swift in Sources */,
 				F923A25B29FFAA7E004E453E /* FolderViewModelProtocol.swift in Sources */,
 				F923A23629FF9372004E453E /* AppDelegate.swift in Sources */,
 				F923A25129FFA763004E453E /* FileManagerServiceProtocol.swift in Sources */,
+				F9C2A5512A0AA9AA00CADACF /* UserDefaultsUtils.swift in Sources */,
+				F9C2A52A2A03075700CADACF /* TabCoordinator.swift in Sources */,
 				F923A23829FF9372004E453E /* SceneDelegate.swift in Sources */,
+				F9C2A5382A038D4C00CADACF /* TabBarController.swift in Sources */,
 				F923A2782A011084004E453E /* TextFieldUtils.swift in Sources */,
 				F923A26929FFB701004E453E /* RemoveChildCoordinatorDelegate.swift in Sources */,
+				F9C2A53E2A038E9800CADACF /* FolderTabCoordinator.swift in Sources */,
 				F923A25D29FFAA9A004E453E /* FolderViewModel.swift in Sources */,
+				F9C2A53A2A038DBD00CADACF /* LoginViewController.swift in Sources */,
+				F9C2A5492A08F71E00CADACF /* AlertUtils.swift in Sources */,
+				F9C2A5422A03ADA500CADACF /* SettingsCoordinator.swift in Sources */,
+				F9C2A5402A038EB600CADACF /* SettingsTabCoordinator.swift in Sources */,
 				F923A25629FFA9DB004E453E /* Module.swift in Sources */,
+				F9C2A54F2A0AA79C00CADACF /* UpdateSortDelegate.swift in Sources */,
+				F9C2A5342A0307E600CADACF /* SettingsViewModel.swift in Sources */,
+				F9C2A5472A08F43D00CADACF /* Keys.swift in Sources */,
 				F923A25F29FFACB9004E453E /* Coordinatable.swift in Sources */,
 				F923A26129FFACE2004E453E /* ModuleCoordinatable.swift in Sources */,
 				F923A24F29FFA752004E453E /* FileManagerService.swift in Sources */,
 				F923A26F29FFC818004E453E /* UrlUtils.swift in Sources */,
+				F9C2A54B2A0A447A00CADACF /* ButtonUtils.swift in Sources */,
 				F923A26629FFAD93004E453E /* AppFactory.swift in Sources */,
 				F923A25429FFA7E3004E453E /* Content.swift in Sources */,
+				F9C2A54D2A0A960800CADACF /* ContentArrayUtils.swift in Sources */,
+				F9C2A5362A0307F400CADACF /* SettingsViewModelProtocol.swift in Sources */,
+				F9C2A53C2A038DD200CADACF /* SettingsViewController.swift in Sources */,
+				F9C2A5302A0307CA00CADACF /* LoginViewModelProtocol.swift in Sources */,
+				F9C2A52C2A03078300CADACF /* LoginCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +591,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F9C2A5262A0306AF00CADACF /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 4.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F9C2A5272A0306AF00CADACF /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9C2A5262A0306AF00CADACF /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F923A22A29FF9372004E453E /* Project object */;
 }

@@ -7,7 +7,21 @@
 */
 
 "Documents" = "Документы";
+"Settings" = "Настройки";
 "Cancel" = "Отмена";
 "Create" = "Создать";
 "Create new folder" = "Создать новую папку";
 "Folder name" = "Имя папки";
+
+"Repeat the password" = "Повторите пароль";
+"Enter the password" = "Введите пароль";
+
+"Create a password" = "Создать пароль";
+
+"Change password" = "Изменить пароль";
+
+"Password is weak" = "Слабый пароль!\nВ пароле должно быть минимум 4 символа";
+"Passwords not the same" = "Введённые пароли не совпадают\nПопробуйте ещё раз";
+"Wrong password" = "Не верный пароль";
+
+"Sort documents" = "Сортировать документы в алфавитном порядке";
