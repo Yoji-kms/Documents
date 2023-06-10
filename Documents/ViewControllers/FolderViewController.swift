@@ -147,9 +147,7 @@ extension FolderViewController: UITableViewDataSource {
         var content = cell.defaultContentConfiguration()
         content.text = item.name
         cell.contentConfiguration = content
-        if item.contentType == .folder {
-            cell.accessoryType = .disclosureIndicator
-        }
+        cell.accessoryType = item.contentType == .folder ? .disclosureIndicator : .none
         return cell
     }
 }
